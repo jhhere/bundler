@@ -8,9 +8,28 @@ You can start learning about Bundler by reading [the documentation](http://gembu
 
 The Bundler core team consists of André Arko ([@indirect](http://github.com/indirect)), Terence Lee ([@hone](http://github.com/hone)), and Jessica Lynn Suttles ([@jlsuttles](http://github.com/jlsuttles)), with support and advice from original Bundler author Yehuda Katz ([@wycats](http://github.com/wycats)).
 
+# Development setup
+
+Bundler doesn't use a Gemfile to list development dependencies, because when we tried it we couldn't tell if we were awake or it was just another level of dreams. To work on Bundler, you'll probably want to do a couple of things.
+
+  1. Install Bundler's development dependencies
+
+        $ rake spec:deps
+
+  2. Run the test suite, to make sure things are working
+
+        $ rake spec
+
+  3. Set up a shell alias to run Bundler from your clone. I use a Bash alias:
+
+        $ alias dbundle='ruby -I ~/src/bundler/bundler/lib ~/src/bundler/bundler/bin/bundle'
+
+     With that set up, you can test changes you've made to Bundler by running `dbundle`, without interfering with the regular `bundle` command.
+
+
 # Adding new features
 
-When adding a new feature to Bundler, please follow these steps:
+If you would like to add a new feature to Bundler, please follow these steps:
 
   1. [Create an issue](https://github.com/bundler/bundler/issues/new) to discuss your feature.
   2. Base your commits on the master branch, since we follow [SemVer](http://semver.org) and don't add new features to old releases.
@@ -89,7 +108,7 @@ Examples of how Bundler is used help everyone, and we’ve discovered that peopl
 If you let someone on the core team know you wrote about Bundler, we will add your post to the list of Bundler resources on the Github project wiki.
 
 
-# Your first bugfix
+# Your first commits
 
 If you’re interested in contributing to Bundler, that’s awesome! We’d love your help.
 
