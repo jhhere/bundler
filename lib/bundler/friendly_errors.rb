@@ -33,5 +33,9 @@ module Bundler
       troubleshooting documentation at http://bit.ly/bundler-issues. Thanks!
     ERR
     raise e
+  rescue ArgumentError => e
+    Bundler.ui.error
+    #puts "It should be bundle init, bundle inject,bundle install"
+    exit e.status_code
   end
 end
