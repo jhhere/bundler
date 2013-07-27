@@ -2,10 +2,10 @@ require "spec_helper"
 
 describe "Argument Error when typing bundle i" do
 
-#  it "should not raise error" do
-#    bundle "i"
-#    expect(err).to be_empty
-#  end
+  it "should not raise error" do
+    bundle "i"
+    expect(err).to be_empty
+  end
 
   it "should display a friendly message to the world" do
     bundle "i"
