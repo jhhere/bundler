@@ -1,9 +1,10 @@
 module Bundler
   def self.with_friendly_errors
     yield
-  rescue ArgumentError => e
+  raise e
+    rescue ArgumentError => e
     #Bundler.ui.error
-    #puts "It should be bundle init, bundle inject, bundle install"
+    puts "Did you make a typo? It should be bundle init, bundle inject, or bundle install"
     #exit e.status_code
   rescue Bundler::BundlerError => e
     Bundler.ui.error e.message, :wrap => true
@@ -36,6 +37,5 @@ module Bundler
       Unfortunately, a fatal error has occurred. Please see the Bundler \
       troubleshooting documentation at http://bit.ly/bundler-issues. Thanks!
     ERR
-    raise e
   end
 end
