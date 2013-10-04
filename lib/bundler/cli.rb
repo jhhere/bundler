@@ -248,7 +248,7 @@ module Bundler
       Bundler.ui.level            = "warn" if opts[:quiet]
       Bundler::Fetcher.disable_endpoint = opts["full-index"]
       Bundler.settings[:disable_shared_gems] = Bundler.settings[:path] ? '1' : nil
-      locking_bundler_version = Bundler.lock.bundler_version
+      locking_bundler_version = Bundler.lock.bundler_version if Bundler.lock
 
       # rubygems plugins sometimes hook into the gem install process
       Gem.load_env_plugins if Gem.respond_to?(:load_env_plugins)
@@ -276,10 +276,10 @@ module Bundler
 
       clean if Bundler.settings[:clean] && Bundler.settings[:path]
 
-      if locking_bundler_version > Gem::Version.new(Bundler::VERSION)
+      if locking_bundler_version && locking_bundler_version > Gem::Version.new(Bundler::VERSION)
         Bundler.ui.warn "You're using an older version of Bundler (#{Bundler::VERSION}) than " \
           "the one specified in your Gemfile (#{locking_bundler_version})!" \
-          "Please upgrade by running `gem install bundler`."
+          " Please upgrade by running `gem install bundler`."
       end
     rescue GemNotFound, VersionConflict => e
       if opts[:local] && Bundler.app_cache.exist?
