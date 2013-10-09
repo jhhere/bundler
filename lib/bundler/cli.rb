@@ -310,8 +310,6 @@ module Bundler
       "Only output warnings and errors."
     method_option "full-index", :type => :boolean, :banner =>
         "Use the rubygems modern index instead of the API endpoint"
-    method_option "all", :type => :boolean, :banner =>
-        "updates all gems"
     def update(*gems)
       sources = Array(options[:source])
       Bundler.ui.level = "warn" if options[:quiet]
@@ -319,11 +317,7 @@ module Bundler
       if gems.empty? && !options[:force]
         Bundler.ui.error "Run `bundle update GEM` to update a specific gem. Run `bundle update --force` if you really want to update all gems."
         exit 1
-      end
-
-      if !options[:all] && gems.empty? && sources.empty?
-        return Bundler.ui.info("Are you sure you want to update every single gem in your bundle?!\n\nIf yes, run bundle update --all.\nIf you want to update an individual gem, run bundle update <gem_name>.\nIf not, have a good day!")
-      elsif options[:all] && gems.empty? && sources.empty?
+      elsif options[:force] && gems.empty? && sources.empty?
         # We're doing a full update
         Bundler.definition(true)
       else
