@@ -761,6 +761,9 @@ describe "the lockfile format" do
 
       DEPENDENCIES
         omg!
+
+      BUNDLER
+        #{Bundler::VERSION}
     L
   end
 
