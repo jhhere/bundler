@@ -12,7 +12,7 @@ describe "bundle update" do
   end
 end
 
-describe "bundle update --all" do
+describe "bundle update --force" do
   before :each do
     build_repo2
 
